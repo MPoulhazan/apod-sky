@@ -26,6 +26,29 @@
     .app-title:hover .slider {
         height: 100%;
     }
+    .menu {
+        position: fixed;
+        margin: auto;
+        top: 20px;
+        display: flex;
+        color: #ffffff;
+        font-size: 2.5em;
+        left: 50%;
+        transform: translateX(-50%);
+
+        > a {
+            color: #ffffff;
+        }
+        > * {
+            padding: 15px;
+        }
+
+        > :hover {
+            transform: scale(1.5);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+    }
     .metas {
         color: #ffffff;
         position: fixed;

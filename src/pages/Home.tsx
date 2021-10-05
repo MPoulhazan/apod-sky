@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.scss';
+import { FaDownload, FaExpand, FaExpandArrowsAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { getInitializedApod } from '../shared/models/Apod.model';
 import { apodService } from '../shared/service/apod.service';
@@ -34,6 +35,13 @@ const Home = () => {
                 <div className="app-title">
                     <span>APOD SKY</span>
                     <span className="slider"></span>
+                </div>
+                <div className="menu">
+                    <FaExpand title="Ajust to image size" />
+                    <a href={apod.hdurl} download>
+                        <FaDownload title="Download" />
+                    </a>
+                    <FaExpandArrowsAlt title="Hide buttons" />
                 </div>
                 <div className="metas">
                     <span className="title">{apod.title}</span>

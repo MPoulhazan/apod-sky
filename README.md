@@ -1,5 +1,6 @@
-# REACT CLI TYPESCRIPT SCSS
-React cli with Typescript configured, SCSS, example of Router and stricts lint rules.
+# APOD VIEWER
+
+Apod viewer build with React. APIs provided by Nasa.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

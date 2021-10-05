@@ -31,6 +31,10 @@ const Home = () => {
         return (
             <div className="Home">
                 <img className="img-apod" src={apod.hdurl} alt={apod.title} />
+                <div className="app-title">
+                    <span>APOD SKY</span>
+                    <span className="slider"></span>
+                </div>
                 <div className="metas">
                     <span className="title">{apod.title}</span>
                     <span className="date">{apod.date}</span>

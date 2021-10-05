@@ -9,9 +9,6 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <span className="title">APOD SKY</span>
-                </header>
                 <Router history={history}>
                     <Switch>
                         <Route exact path="/" component={Home} />

@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Home.scss';
-import { FaDownload, FaExpand, FaExpandArrowsAlt } from 'react-icons/fa';
+import {
+    FaDownload,
+    FaExpand,
+    FaExpandArrowsAlt,
+    FaCompressArrowsAlt,
+} from 'react-icons/fa';
+import { IoPlanet } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { getInitializedApod } from '../shared/models/Apod.model';
 import { apodService } from '../shared/service/apod.service';
@@ -9,6 +15,7 @@ const Home = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [apod, setApod] = useState(getInitializedApod());
+    const [isHiddenButtons, setHiddenButtons] = useState(false);
 
     useEffect(() => {
         apodService().then(
@@ -24,6 +31,10 @@ const Home = () => {
         );
     }, []);
 
+    const toggleHiddenButtons = useCallback(async () => {
+        setHiddenButtons(!isHiddenButtons);
+    }, [isHiddenButtons]);
+
     if (error) {
         return <div>Erreur:</div>;
     } else if (!isLoaded) {
@@ -32,22 +43,46 @@ const Home = () => {
         return (
             <div className="Home">
                 <img className="img-apod" src={apod.hdurl} alt={apod.title} />
-                <div className="app-title">
-                    <span>APOD SKY</span>
-                    <span className="slider"></span>
-                </div>
-                <div className="menu">
-                    <FaExpand title="Ajust to image size" />
-                    <a href={apod.hdurl} download>
-                        <FaDownload title="Download" />
-                    </a>
-                    <FaExpandArrowsAlt title="Hide buttons" />
-                </div>
-                <div className="metas">
-                    <span className="title">{apod.title}</span>
-                    <span className="date">{apod.date}</span>
-                    <span className="explanation">{apod.explanation}</span>
-                </div>
+                {!isHiddenButtons && (
+                    <div className="app-title">
+                        <span className="title-logo">
+                            AP
+                            <IoPlanet className="planet" /> D SKY
+                        </span>
+                        <span
+                            className={`slider ${isLoaded ? 'active' : ''}`}
+                        ></span>
+                    </div>
+                )}
+                {!isHiddenButtons && (
+                    <div className="menu">
+                        <FaExpand title="Ajust to image size" />
+                        <a href={apod.hdurl} download>
+                            <FaDownload title="Download" />
+                        </a>
+                        <FaExpandArrowsAlt
+                            title="Hide buttons"
+                            onClick={() => toggleHiddenButtons()}
+                        />
+                    </div>
+                )}
+                {isHiddenButtons && (
+                    <div className="menu">
+                        <FaCompressArrowsAlt
+                            title="Show buttons"
+                            onClick={() => toggleHiddenButtons()}
+                        />
+                    </div>
+                )}
+                {!isHiddenButtons && (
+                    <div className="metas">
+                        <span className="title">{apod.title}</span>
+                        <span className="date">{apod.date}</span>
+                        <span className="explanation">
+                            &emsp;{apod.explanation}
+                        </span>
+                    </div>
+                )}
             </div>
         );
     }

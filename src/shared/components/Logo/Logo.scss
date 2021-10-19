@@ -1,0 +1,32 @@
+.app-title {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 3em;
+    font-family: 'shakra', Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    padding: 0 10px;
+    cursor: pointer;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+
+    .title-logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .planet {
+            animation: 2s ease-out 0s 1 slideInFromTop;
+        }
+    }
+    .slider {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0;
+        margin: 0 auto;
+        height: 100%;
+        background-color: #ffffff;
+        width: 2px;
+        animation: 2s ease-out 0s 1 heigthInFromTop;
+    }
+}

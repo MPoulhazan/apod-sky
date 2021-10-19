@@ -6,10 +6,10 @@ import {
     FaExpandArrowsAlt,
     FaCompressArrowsAlt,
 } from 'react-icons/fa';
-import { IoPlanet } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
 import { getInitializedApod } from '../shared/models/Apod.model';
 import { apodService } from '../shared/service/apod.service';
+import { Logo } from '../shared/components/Logo/logo';
 
 const Home = () => {
     const [error, setError] = useState(null);
@@ -42,18 +42,17 @@ const Home = () => {
     } else {
         return (
             <div className="Home">
-                <img className="img-apod" src={apod.hdurl} alt={apod.title} />
-                {!isHiddenButtons && (
-                    <div className="app-title">
-                        <span className="title-logo">
-                            AP
-                            <IoPlanet className="planet" /> D SKY
-                        </span>
-                        <span
-                            className={`slider ${isLoaded ? 'active' : ''}`}
-                        ></span>
-                    </div>
+                {apod.media_type === 'image' && (
+                    <img
+                        className="img-apod"
+                        src={apod.hdurl}
+                        alt={apod.title}
+                    />
                 )}
+                {apod.media_type === 'video' && (
+                    <video className="img-apod" src={apod.hdurl} />
+                )}
+                {!isHiddenButtons && <Logo isLoaded={isLoaded} />}
                 {!isHiddenButtons && (
                     <div className="menu">
                         <FaExpand title="Ajust to image size" />

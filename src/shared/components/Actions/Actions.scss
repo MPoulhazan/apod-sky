@@ -1,0 +1,28 @@
+@import '../../styles/keyframes.scss';
+
+.menu {
+    position: fixed;
+    margin: auto;
+    top: 20px;
+    display: flex;
+    color: #ffffff;
+    font-size: 2.5em;
+    //transform: translateX(-50%);
+    right: 20px;
+    animation: 1s ease-out 0s 1 slideInFromTop;
+
+    > a {
+        color: #ffffff;
+    }
+    > * {
+        margin: auto;
+        padding: 15px;
+        justify-content: center;
+    }
+
+    > :hover {
+        transform: scale(1.5);
+        transition: transform 0.2s ease;
+        cursor: pointer;
+    }
+}

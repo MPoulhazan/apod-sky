@@ -1,0 +1,37 @@
+.metas {
+    color: #ffffff;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    max-width: 50%;
+    font-size: 2.2vh;
+    text-shadow: 1px 1px #313131;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-left: 3px solid #ffffff;
+    padding: 20px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2 em;
+    animation: 1s ease-out 0s 1 slideInFromBottom;
+
+    > * {
+        padding: 5px 0;
+    }
+
+    .title {
+        font-size: 2em;
+        font-weight: bold;
+        font-family: 'shakra', Arial, Helvetica, sans-serif;
+    }
+    .date {
+        font-size: 1.5em;
+        font-family: 'shakra', Arial, Helvetica, sans-serif;
+        font-style: italic;
+    }
+    .explanation {
+        text-align: justify;
+        font-family: 'shakra', Arial, Helvetica, sans-serif;
+    }
+}

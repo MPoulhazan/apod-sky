@@ -1,12 +1,12 @@
 import React from 'react';
 import {
     FaExpand,
-    FaDownload,
     FaExpandArrowsAlt,
     FaCompressArrowsAlt,
     FaRandom,
     FaPlay,
     FaStop,
+    FaMusic,
 } from 'react-icons/fa';
 import { isPlayRandom$ } from '../../service/apod.service';
 import './Actions.scss';
@@ -17,6 +17,7 @@ interface Props {
     isPlay: boolean;
     toggleHiddenButtons: () => void;
     loadRandomPicture: () => void;
+    playAutoLoadRandomPicture: (arg0: boolean) => void;
 }
 
 export const Actions = (props: Props) => {
@@ -25,9 +26,8 @@ export const Actions = (props: Props) => {
     return (
         (!isHiddenButtons && (
             <div className="menu">
-                <FaExpand title="Ajust to image size" />
                 <a href={props.apodUrl} download>
-                    <FaDownload title="Download" />
+                    <FaExpand title="Show in full size" />
                 </a>
                 <FaExpandArrowsAlt
                     title="Hide buttons"
@@ -41,13 +41,21 @@ export const Actions = (props: Props) => {
                     <FaPlay
                         title="Play random picture"
                         onClick={() => {
-                            isPlayRandom$.next(true);
+                            props.playAutoLoadRandomPicture(true);
                         }}
                     />
                 )}
                 {props.isPlay && (
                     <FaStop
                         title="Stop random picture"
+                        onClick={() => {
+                            props.playAutoLoadRandomPicture(false);
+                        }}
+                    />
+                )}
+                {true && (
+                    <FaMusic
+                        title="Play music"
                         onClick={() => {
                             isPlayRandom$.next(false);
                         }}

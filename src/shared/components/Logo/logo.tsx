@@ -4,11 +4,12 @@ import './Logo.scss';
 
 interface Props {
     isLoaded: boolean;
+    initHome: () => void;
 }
 
 export const Logo = (props: Props) => {
     return (
-        <div className="app-title">
+        <div className="app-title" onClick={() => props.initHome()}>
             <span className="title-logo">
                 AP
                 <IoPlanet className="planet" /> D SKY

@@ -24,3 +24,12 @@
         transform: translateY(0);
     }
 }
+
+@keyframes fadebackground {
+    from {
+        background-color: #000000;
+    }
+    to {
+        background-color: none;
+    }
+}

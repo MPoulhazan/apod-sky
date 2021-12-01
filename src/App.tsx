@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import { Switch, Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 

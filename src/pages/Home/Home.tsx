@@ -1,18 +1,20 @@
 import React, { useCallback } from 'react';
 import './Home.scss';
 import { useEffect, useState } from 'react';
-import { getInitializedApod } from '../shared/models/Apod.model';
+import { getInitializedApod } from '../../shared/models/Apod.model';
 import {
     getRandomPicture,
     getTodayPicture,
     isPlayRandom$,
-} from '../shared/service/apod.service';
-import { Logo } from '../shared/components/Logo/logo';
-import { Actions } from '../shared/components/Actions/Actions';
-import { Metas } from '../shared/components/Metas/Metas';
+} from '../../shared/service/apod.service';
+import { Logo } from '../../shared/components/Logo/logo';
+import { Actions } from '../../shared/components/Actions/Actions';
+import { Metas } from '../../shared/components/Metas/Metas';
 import { interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { animateScroll as scroll } from 'react-scroll';
+import { Intro } from '../../shared/components/Intro/Intro';
+import { Loading } from '../../shared/components/Loading/Loading';
 
 const Home = () => {
     const [error, setError] = useState(null);
@@ -20,6 +22,7 @@ const Home = () => {
     const [apod, setApod] = useState(getInitializedApod());
     const [isHiddenButtons, setHiddenButtons] = useState(false);
     const [isPlay, setIsPlay] = useState(false);
+    const [showIntro, setshowIntro] = useState(true);
 
     useEffect(() => {
         loadGetTodayPicture();
@@ -40,11 +43,12 @@ const Home = () => {
 
     const loadRandomPicture = () => {
         setIsLoaded(false);
+        scroll.scrollToTop();
         getRandomPicture().then(
             (result) => {
                 setIsLoaded(true);
                 setApod(result[0]);
-                scrollBottom(); // TODO: Not scroll in nirmal mode
+                scrollBottom();
             },
             (error) => {
                 setIsLoaded(true);
@@ -66,19 +70,25 @@ const Home = () => {
     };
 
     const scrollBottom = () => {
-        scroll.scrollToBottom({ duration: 10000, smooth: true });
+        scroll.scrollToBottom({ duration: 15000, smooth: true });
     };
 
     const toggleHiddenButtons = useCallback(async () => {
         setHiddenButtons(!isHiddenButtons);
     }, [isHiddenButtons]);
 
+    setTimeout(() => {
+        setshowIntro(false);
+    }, 3000);
+
     if (error) {
         return <div>Erreur:</div>;
     } else if (!isLoaded) {
-        return <div>Chargement...</div>;
+        return <Loading />;
     } else {
-        return (
+        return showIntro ? (
+            <Intro />
+        ) : (
             <div className="Home">
                 {apod.media_type === 'image' && (
                     <img

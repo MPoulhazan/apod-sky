@@ -1,0 +1,29 @@
+@import '../../styles/keyframes.scss';
+
+.loading {
+    height: 100vh;
+    width: 100%;
+    font-size: 5em;
+    animation: fadebackground 1s;
+
+    .spinner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+
+        .rotate {
+            animation: rotation 4s infinite linear;
+        }
+    }
+
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(359deg);
+        }
+    }
+}

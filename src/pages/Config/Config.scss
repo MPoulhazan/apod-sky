@@ -1,0 +1,12 @@
+@import '../../shared/styles/keyframes.scss';
+
+.config {
+    padding: 100px 10%;
+    background-color: rgb(27, 1, 58);
+    height: 100vh;
+    display: flex;
+
+    .form-container {
+        width: 100%;
+    }
+}

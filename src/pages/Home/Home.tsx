@@ -19,6 +19,7 @@ import { Loading } from '../../shared/components/Loading/Loading';
 const Home = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [apod, setApod] = useState(getInitializedApod());
     const [isHiddenButtons, setHiddenButtons] = useState(false);
     const [isPlay, setIsPlay] = useState(false);
@@ -29,6 +30,8 @@ const Home = () => {
     }, []);
 
     const loadGetTodayPicture = () => {
+        setIsLoaded(false);
+        setIsImageLoaded(false);
         getTodayPicture().then(
             (result) => {
                 setIsLoaded(true);
@@ -43,6 +46,7 @@ const Home = () => {
 
     const loadRandomPicture = () => {
         setIsLoaded(false);
+        setIsImageLoaded(false);
         scroll.scrollToTop();
         getRandomPicture().then(
             (result) => {
@@ -90,16 +94,21 @@ const Home = () => {
             <Intro />
         ) : (
             <div className="Home">
+                {apod.media_type === 'image' && !isImageLoaded && (
+                    <Loading absolute={true} />
+                )}
                 {apod.media_type === 'image' && (
                     <img
                         className="img-apod"
                         src={apod.hdurl}
                         alt={apod.title}
+                        onLoad={() => setIsImageLoaded(true)}
                     />
                 )}
                 {apod.media_type === 'video' && (
                     <div className="video-container">
                         <iframe
+                            title="video-iframe"
                             width="560"
                             height="315"
                             src={apod.url}

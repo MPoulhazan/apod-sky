@@ -3,6 +3,7 @@ import './App.scss';
 import Home from './pages/Home/Home';
 import { Switch, Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
+import Config from './pages/Config/Config';
 
 const history = createBrowserHistory();
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
                 <Router history={history}>
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/config" component={Config} />
                     </Switch>
                 </Router>
             </div>

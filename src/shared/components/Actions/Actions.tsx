@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-    FaExpand,
     FaExpandArrowsAlt,
     FaCompressArrowsAlt,
     FaRandom,
     FaPlay,
     FaStop,
     FaMusic,
+    FaRegSun,
+    FaDownload,
 } from 'react-icons/fa';
 import { isPlayRandom$ } from '../../service/apod.service';
 import './Actions.scss';
@@ -26,8 +27,13 @@ export const Actions = (props: Props) => {
     return (
         (!isHiddenButtons && (
             <div className="menu">
-                <a href={props.apodUrl} download>
-                    <FaExpand title="Show in full size" />
+                <a
+                    href={props.apodUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                >
+                    <FaDownload title="Download picture" />
                 </a>
                 <FaExpandArrowsAlt
                     title="Hide buttons"
@@ -53,14 +59,22 @@ export const Actions = (props: Props) => {
                         }}
                     />
                 )}
-                {true && (
+                {
                     <FaMusic
                         title="Play music"
                         onClick={() => {
                             isPlayRandom$.next(false);
                         }}
                     />
-                )}
+                }
+                {
+                    <FaRegSun
+                        title="Configuration"
+                        onClick={() => {
+                            window.open('/config', '_self');
+                        }}
+                    />
+                }
             </div>
         )) || (
             <div className="menu">

@@ -1,0 +1,44 @@
+@import '../../styles/keyframes.scss';
+
+.input {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5em;
+
+    > * {
+        margin: auto 20px;
+    }
+
+    .input-area {
+        min-width: 30%;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .input-form {
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ffffff;
+            height: 30px;
+
+            &.invalid {
+                border: 3px solid #ff0000;
+                box-shadow: 0px 0px 10px #ff0000;
+            }
+        }
+
+        .error-msg {
+            font-size: 0.4em;
+            color: #ff0000;
+        }
+    }
+    .btn {
+        width: 30px;
+        transition-duration: 300ms;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}

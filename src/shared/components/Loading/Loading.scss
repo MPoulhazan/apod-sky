@@ -6,6 +6,12 @@
     font-size: 5em;
     animation: fadebackground 1s;
 
+    &.absolute {
+        position: absolute;
+        background-color: #282c34;
+        z-index: 99;
+    }
+
     .spinner {
         display: flex;
         flex-direction: column;

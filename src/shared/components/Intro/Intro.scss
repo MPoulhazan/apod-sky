@@ -20,6 +20,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+
         .planet {
             animation: 2s ease-out 0s 1 slideInFromTop;
         }
@@ -92,6 +93,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+        flex-direction: column;
 
         .animate span {
             font-family: 'shakra', Arial, Helvetica, sans-serif;
@@ -139,5 +141,15 @@
                 opacity: 1;
             }
         }
+    }
+
+    .mobile-warning {
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        font-size: 0.5em;
+        z-index: 9;
+        text-align: justify;
+        padding: 10px;
     }
 }

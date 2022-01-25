@@ -15,6 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 import { animateScroll as scroll } from 'react-scroll';
 import { Intro } from '../../shared/components/Intro/Intro';
 import { Loading } from '../../shared/components/Loading/Loading';
+import { useMediaQuery } from 'react-responsive';
 
 const Home = () => {
     const [error, setError] = useState(null);
@@ -81,6 +82,8 @@ const Home = () => {
         setHiddenButtons(!isHiddenButtons);
     }, [isHiddenButtons]);
 
+    const isMobile = useMediaQuery({ query: `(max-width: 960px)` });
+
     setTimeout(() => {
         setshowIntro(false);
     }, 3000);
@@ -90,8 +93,8 @@ const Home = () => {
     } else if (!isLoaded) {
         return <Loading />;
     } else {
-        return showIntro ? (
-            <Intro />
+        return showIntro || isMobile ? (
+            <Intro isMobile={!!isMobile} />
         ) : (
             <div className="Home">
                 {apod.media_type === 'image' && !isImageLoaded && (

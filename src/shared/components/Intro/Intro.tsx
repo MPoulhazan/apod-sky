@@ -1,7 +1,11 @@
 import React from 'react';
 import './Intro.scss';
 
-export const Intro = () => {
+interface Props {
+    isMobile: boolean;
+}
+
+export const Intro = (props: Props) => {
     return (
         <div className="intro">
             <div className="fade"></div>
@@ -22,6 +26,12 @@ export const Intro = () => {
                     <span>K</span>
                     <span>Y</span>
                 </div>
+                {props.isMobile && (
+                    <div className="mobile-warning">
+                        This website is not intended to be use by mobile but
+                        with a large screen
+                    </div>
+                )}
             </div>
         </div>
     );

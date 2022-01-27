@@ -12,6 +12,7 @@ interface Props {
     displayUncheck?: boolean;
     formAction?: (valToCheck: string) => FormControlState;
     checkAction?: (value: string) => void;
+    clearAction?: () => void;
 }
 
 export const Input = (props: Props) => {
@@ -31,9 +32,16 @@ export const Input = (props: Props) => {
     };
 
     const handleCheck = (event: any) => {
-        // setInputVal(event.target.value);
         if (!!props.checkAction) {
             props.checkAction(inputValue);
+        }
+    };
+
+    const handleClear = () => {
+        setIsEditing(true);
+        setInputValue('');
+        if (!!props.clearAction) {
+            props.clearAction();
         }
     };
 
@@ -55,7 +63,9 @@ export const Input = (props: Props) => {
             {props.displayCheck && (
                 <Checked onClick={handleCheck} className="btn" />
             )}
-            {props.displayUncheck && <Unchecked className="btn" />}
+            {props.displayUncheck && (
+                <Unchecked onClick={handleClear} className="btn" />
+            )}
         </div>
     );
 };

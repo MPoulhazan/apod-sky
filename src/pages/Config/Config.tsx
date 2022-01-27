@@ -5,6 +5,7 @@ import { Input } from '../../shared/components/Input/Input';
 import { checkValidTokenFormat } from '../../shared/service/form-control.service';
 import {
     getApodTokenInLocalStorage,
+    removeApodTokenInLocalStorage,
     saveApodTokenInLocalStorage,
 } from '../../shared/service/localstorage.service';
 import { HOME_PATH } from '../../shared/models/Constants';
@@ -13,6 +14,7 @@ const Config = () => {
     const goToHome = () => window.open(HOME_PATH, '_self');
     const checkValidToken = (token: string) => checkValidTokenFormat(token);
     const saveToken = (token: string) => saveApodTokenInLocalStorage(token);
+    const clearToken = () => removeApodTokenInLocalStorage();
     const savedToken = getApodTokenInLocalStorage();
 
     return (
@@ -39,6 +41,7 @@ const Config = () => {
                     displayUncheck={true}
                     formAction={checkValidToken}
                     checkAction={saveToken}
+                    clearAction={clearToken}
                 ></Input>
             </div>
         </div>

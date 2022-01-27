@@ -1,7 +1,7 @@
 const APOD_TOKEN_NAME = 'apod_token';
 
 export const saveInLocalStorage = (key: string, value: string): void => {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, value);
 };
 
 export const getInLocalStorage = (key: string): string => {

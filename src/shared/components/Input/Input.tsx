@@ -6,7 +6,7 @@ import { FormControlState } from '../../service/form-control.service';
 
 interface Props {
     name: string;
-    value: string;
+    defaultValue: string;
     placeholder?: string;
     displayCheck?: boolean;
     displayUncheck?: boolean;
@@ -15,13 +15,13 @@ interface Props {
 }
 
 export const Input = (props: Props) => {
-    // const [inputVal, setInputVal] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
     const [validField, setValidField] = useState(true);
     const [errorMsg, setErrorMsg] = useState<any | null>(null);
     const [inputValue, setInputValue] = useState<any | null>(null);
 
     const handleChange = (event: any) => {
-        // setInputVal(event.target.value);
+        setIsEditing(true);
         if (!!props.formAction) {
             const { valid, message } = props.formAction(event.target.value);
             setInputValue(event.target.value);
@@ -37,15 +37,18 @@ export const Input = (props: Props) => {
         }
     };
 
+    const defaultOrInputValue = !isEditing ? props.defaultValue : inputValue;
+
     return (
         <div className="input">
             <span>{props.name}</span>
             <div className="input-area">
                 <input
                     className={`input-form ${validField ? '' : 'invalid'}`}
-                    name={props.value}
+                    name="input"
                     placeholder={props.placeholder}
                     onChange={handleChange}
+                    value={defaultOrInputValue}
                 />
                 <span className="error-msg">{errorMsg}</span>
             </div>

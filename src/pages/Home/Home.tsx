@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import './Home.scss';
 import { useEffect, useState } from 'react';
-import { getInitializedApod } from '../../shared/models/Apod.model';
+import { Apod, getInitializedApod } from '../../shared/models/Apod.model';
 import {
     getRandomPicture,
     getTodayPicture,
@@ -16,6 +16,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import { Intro } from '../../shared/components/Intro/Intro';
 import { Loading } from '../../shared/components/Loading/Loading';
 import { useMediaQuery } from 'react-responsive';
+import ErrorView from '../ErrorView/ErrorView';
 
 const Home = () => {
     const [error, setError] = useState(null);
@@ -36,9 +37,10 @@ const Home = () => {
         getTodayPicture().then(
             (result) => {
                 setIsLoaded(true);
-                setApod(result);
+                setApod(result as Apod);
             },
             (error) => {
+                console.log(error);
                 setIsLoaded(true);
                 setError(error);
             }
@@ -89,7 +91,7 @@ const Home = () => {
     }, 3000);
 
     if (error) {
-        return <div>Erreur:</div>;
+        return <ErrorView error={error} />;
     } else if (!isLoaded) {
         return <Loading />;
     } else {

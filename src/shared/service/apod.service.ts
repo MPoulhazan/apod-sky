@@ -19,8 +19,6 @@ export const isPlayRandom$: Subject<boolean> = new Subject<boolean>();
 
 export const getTodayPicture = (): Promise<Apod | HttpError> => {
     return fetch(APOD_API_FULL_URL).then((response) => {
-        console.log('OOOK', JSON.stringify(response));
-
         if (response.status >= 200 && response.status < 204) {
             return response.json();
         } else if (response.status === 403) {
@@ -43,11 +41,10 @@ export const getRandomPicture = (): Promise<Apod> => {
     );
 };
 
-/* export const apodServiceObs = (): Observable<Apod> => {
-    return from(fetch(APOD_API_FULL_URL)
-    .then((res as Apod) => {
-        return {
-            res.date,
+export const checkTokenValue = (token: string): Promise<boolean> => {
+    return fetch(APOD_API_URL + '?' + APOD_API_KEY_LBL + '=' + token).then(
+        (response) => {
+            return response.status >= 200 && response.status < 204;
         }
-    })); 
-};*/
+    );
+};

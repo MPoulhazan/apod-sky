@@ -12,6 +12,7 @@ import {
     saveApodTokenInLocalStorage,
 } from '../../shared/service/localstorage.service';
 import { HOME_PATH } from '../../shared/models/Constants';
+import { Social } from '../../shared/components/Social/Social';
 
 const Config = () => {
     const [checkaction, setCheckaction] = useState(false);
@@ -86,6 +87,7 @@ const Config = () => {
                         <span>Invalid</span>
                     )}
                 </div>
+                <Social />
             </div>
         </div>
     );

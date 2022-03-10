@@ -1,0 +1,9 @@
+.social {
+    display: flex;
+    justify-content: space-around;
+
+    > * {
+        font-size: 3em;
+        cursor: pointer;
+    }
+}

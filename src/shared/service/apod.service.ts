@@ -1,7 +1,7 @@
 /* import { Apod } from '../models/Apod.model';
 import { Observable, from } from 'rxjs'; */
 
-import { Subject } from 'rxjs-compat';
+import { Subject } from 'rxjs';
 import { Apod } from '../models/Apod.model';
 import { INVALID_TOKEN_MSG, UNKNOWN_ERROR_MSG } from '../models/Constants';
 import { errorCode, HttpError } from '../models/HttpError';
@@ -14,7 +14,6 @@ const TOKEN_APOD =
 const APOD_API_FULL_URL =
     APOD_API_URL + '?' + APOD_API_KEY_LBL + '=' + TOKEN_APOD;
 
-// export const isPlayRandom$ = new BehaviorSubject<boolean>(false);
 export const isPlayRandom$: Subject<boolean> = new Subject<boolean>();
 
 export const getTodayPicture = (): Promise<Apod | HttpError> => {

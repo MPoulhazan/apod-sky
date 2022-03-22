@@ -13,6 +13,12 @@ import {
 } from '../../shared/service/localstorage.service';
 import { HOME_PATH } from '../../shared/models/Constants';
 import { Social } from '../../shared/components/Social/Social';
+import {
+    IoCheckmarkCircleSharp,
+    IoCloseCircleSharp,
+    IoLogoPaypal,
+    IoWarning,
+} from 'react-icons/io5';
 
 const Config = () => {
     const [checkaction, setCheckaction] = useState(false);
@@ -64,7 +70,7 @@ const Config = () => {
                     here
                 </a>{' '}
                 just with complete the form Generate API Key, it's free and take
-                2 minutes.
+                2 minutes. This action has to be done just once.
             </span>
             <div className="form-container">
                 <Input
@@ -79,13 +85,35 @@ const Config = () => {
                 ></Input>
                 <div className="field-token-status">
                     <div className="label">Token status</div>
-                    {!savedToken && !checkaction ? (
-                        <span>To configure</span>
-                    ) : tokenValueValid ? (
-                        <span>Valid</span>
-                    ) : (
-                        <span>Invalid</span>
-                    )}
+                    <div className="status-icon">
+                        {!savedToken && !checkaction ? (
+                            <span>
+                                <IoWarning className="warn-icon" />
+                                <span>
+                                    You APOD token is not configured yet, you
+                                    will be limited by demo limits
+                                </span>
+                            </span>
+                        ) : tokenValueValid ? (
+                            <span>
+                                <IoCheckmarkCircleSharp className="valid-icon" />
+                                <span>You APOD token is valid</span>
+                            </span>
+                        ) : (
+                            <span>
+                                <IoCloseCircleSharp className="invalid-icon" />
+                                <span>
+                                    You APOD token is not valid, please check it
+                                </span>
+                            </span>
+                        )}
+                    </div>
+                </div>
+                <div className="like">
+                    You like this application? You can help us{' '}
+                    <a href={process.env.REACT_APP_URL_PAYPAL} target="_blank">
+                        <IoLogoPaypal className="paypal-logo" />
+                    </a>
                 </div>
                 <Social />
             </div>

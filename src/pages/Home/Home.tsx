@@ -92,8 +92,6 @@ const Home = () => {
 
     if (error) {
         return <ErrorView error={error} />;
-    } else if (!isLoaded) {
-        return <Loading />;
     } else {
         return showIntro || isMobile ? (
             <Intro isMobile={!!isMobile} />

@@ -7,7 +7,7 @@
     animation: fadebackground 1s;
 
     &.absolute {
-        position: absolute;
+        position: fixed;
         background-color: #282c34;
         z-index: 99;
     }

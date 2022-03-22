@@ -1,15 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import {
     FaExpandArrowsAlt,
     FaCompressArrowsAlt,
     FaRandom,
     FaPlay,
     FaStop,
-    FaMusic,
     FaRegSun,
     FaDownload,
 } from 'react-icons/fa';
-import { isPlayRandom$ } from '../../service/apod.service';
 import './Actions.scss';
 
 interface Props {
@@ -22,7 +21,20 @@ interface Props {
 }
 
 export const Actions = (props: Props) => {
+    const [timer, setTimer] = useState(10);
+
     const isHiddenButtons = props.isHiddenButtons;
+
+    let timeleft = 10;
+    let downloadTimer = setInterval(function () {
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+        }
+
+        timeleft -= 1;
+        setTimer(timeleft);
+        console.log(timeleft);
+    }, 1000);
 
     return (
         (!isHiddenButtons && (
@@ -59,14 +71,7 @@ export const Actions = (props: Props) => {
                         }}
                     />
                 )}
-                {
-                    <FaMusic
-                        title="Play music"
-                        onClick={() => {
-                            isPlayRandom$.next(false);
-                        }}
-                    />
-                }
+                {props.isPlay && <span>{timer}</span>}
                 {
                     <FaRegSun
                         title="Configuration"
